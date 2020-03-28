@@ -1,0 +1,49 @@
+<div class="finalize_order" ng-controller="finalizeOrderController">
+    <div class="form" ng-show="!extrasPopUp">
+        <h1>Formularz</h1>
+        <form name="orderForm" novalidate>
+            <p>
+                <input type="text" name="street" ng-model="finalOrder.orderInfo.street" placeholder="Nazwa ulicy" required>
+                <div ng-show="orderForm.street.$invalid" class="bubble">Nazwa ulicy jest wymagana!</div>
+            </p>            
+    
+            <p>
+                <input type="text" name="phone" ng-model="finalOrder.orderInfo.phone" ng-change="phoneNumberValidation()" placeholder="Numer telefonu" required>
+                <div ng-show="orderForm.phone.$invalid || !validOrder" class="bubble">Numer telefonu jest wymagany!</div>
+            </p>            
+
+            <p>
+                <textarea name="remarks" ng-model="finalOrder.orderInfo.remarks" placeholder="Uwagi"></textarea>
+            </p>
+        </form>
+    </div>
+
+    <div class="leftPanel">
+    <div ng-show="extrasPopUp" class="ng-hide">
+        <div class="popUpExtras">
+        <h1>A może coś ekstra?</h1>
+       
+        <ul><li ng-repeat = "position in extras track by $index"><input type="checkbox" ng-click="addExtrasToOrder(position)">{{position.label}} - {{position.price}} zł</input></li></ul>
+
+        <button ng-click=hidePopUp()>Przejdź do zamówienia</button>    
+        </div>
+    </div>
+    <div class="basket_read_only" ng-show="!extrasPopUp">
+        <h1>Koszyk</h1>
+            <ul>
+                <li ng-repeat = "position in basket">
+                <p>{{position.count}}x {{position.name}} - {{position.price}} zł</p>
+                <p>Ekstra składniki: {{position.extraIngredients}}</p></li>
+            </ul>
+            <ul>
+                <li ng-repeat = "position in finalOrder.extras">
+                <p>{{position.label}} - {{position.price}}</p></li>
+            <p>Suma: {{total}} zł</p>
+    </div>
+    </div>
+    <div class="buttongroup">    
+        <button id="backButton" ng-click=goToMain()>Wróć</button>
+        <button id="orderButton" ng-disabled="form.$invalid || !validOrder" ng-click="postOrder()">Zamów</button>
+    </div>
+    <div ng-show="postFailed">Nieprawidłowe zamówienie</div>
+</div>

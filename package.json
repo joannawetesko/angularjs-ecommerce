@@ -1,0 +1,25 @@
+{
+  "name": "PizzeriaApp",
+  "version": "1.0.0",
+  "description": "Pizzeria",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Joanna Wetesko",
+  "license": "MIT",
+  "devDependencies": {
+    "bower": "",
+    "gulp": "",
+    "gulp-concat": "",
+    "gulp-inject": "",
+    "gulp-minify-css": "",
+    "gulp-minify-html": "",
+    "gulp-uglify": "",
+    "jshint": "",
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "lodash": "^3.10.1",
+    "websocket": "^1.0.22"
+  }
+}
